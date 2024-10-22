@@ -2,7 +2,7 @@
 #define ARRAYLIST_HPP
 
 #include <iostream>
-#include <algorithm> // std::copy için gerekli
+#include <algorithm>
 
 using namespace std;
 
@@ -15,8 +15,6 @@ class ArrayList {
 
         void reserve(int newCapacity) {
             Object *tmp = new Object[newCapacity];
-            //for (int index = 0;index<length;index++) tmp[index] = items[index];
-            // std::copy ile elemanları kopyalama
             copy(items, items + length, tmp);
             delete [] items;
             items = tmp;
@@ -93,13 +91,12 @@ class ArrayList {
             removeAt(index);
         }
 
-        // removeAll fonksiyonu: Belirli bir öğeden tüm kopyaları kaldırır
         void removeAll(const Object& item) {
             for (int i = 0; i < length; ) {
                 if (items[i] == item) {
-                    removeAt(i); // Öğeyi kaldır
+                    removeAt(i);
                 } else {
-                    i++; // Bir sonraki öğeye geç
+                    i++;
                 }
             }
         }
@@ -115,7 +112,6 @@ class ArrayList {
                 if (items[index] == item) return true;
             }
             return false;
-            //return indexOf(item) >= 0;
         }
 
         ~ArrayList() {
